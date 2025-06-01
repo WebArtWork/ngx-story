@@ -90,6 +90,12 @@ export class StoriesComponent {
 				}
 			},
 			{
+				icon: 'category',
+				hrefFunc: (doc: Story): string => {
+					return '/character/types/' + doc._id;
+				}
+			},
+			{
 				icon: 'event',
 				hrefFunc: (doc: Story): string => {
 					return '/events/' + doc._id;

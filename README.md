@@ -4,6 +4,18 @@ The `Story` module is a feature-rich narrative engine for Angular applications. 
 
 ---
 
+## 🧱 Module Descriptions
+
+- **Story** – Core module that holds the basic information about the story: its title, summary, and main attributes.
+- **Change** – Represents a specific modification in the world compared to our reality; used to structure story evolution.
+- **Change Type** – Defines categories for changes (e.g., Fire, Water, Wind for Magic), helping classify story alterations.
+- **Character** – Represents a person or important being in the story with detailed attributes; often a hero or key figure.
+- **Character Type** – Defines character-specific traits such as gender, age group (young, middle-aged, old), associated change type, and other role-defining attributes to enrich character profiles.
+- **Event** – Marks significant narrative points such as battles, discoveries, or mystical phenomena that shape the plot.
+- **Location** – Describes places such as cities, castles, or regions that are tied to story events and characters.
+
+---
+
 ## 🔧 Purpose
 
 This module empowers users to:
@@ -39,6 +51,7 @@ Each interface extends `CrudDocument` from Wacom and includes key fields:
 - **Storychange** – A change step in the story timeline
 - **Storychangetype** – Type of story transition (e.g. death, move)
 - **Storycharacter** – Person/being in the story world
+- **Storycharactertype** – Type of story person/being
 - **Storyevent** – Narrative milestone or trigger point
 - **Storylocation** – Physical or abstract place in the story
 

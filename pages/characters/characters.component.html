@@ -1,11 +1,11 @@
-<wtable title="Characters" [columns]="columns" [config]="config" [rows]="rows">
+<wtable
+	[columns]="columns"
+	title="Characters"
+	[config]="config"
+	*ngIf="showTable"
+	[rows]="rows"
+>
 	<ng-template cell="birth" let-element>
 		{{element.birth|date:'dd/MM/YYY'}}
-	</ng-template>
-	<ng-template cell="location" let-element>
-		{{locationService.doc(element.location).name}}
-	</ng-template>
-	<ng-template cell="type" let-element>
-		{{typeService.doc(element.type).name}}
 	</ng-template>
 </wtable>

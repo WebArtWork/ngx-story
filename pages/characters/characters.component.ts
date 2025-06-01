@@ -10,6 +10,7 @@ import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { StorylocationService } from 'src/app/modules/story/services/storylocation.service';
 import { StorychangetypeService } from 'src/app/modules/story/services/storychangetype.service';
+import { StorycharactertypeService } from '../../services/storycharactertype.service';
 
 @Component({
 	templateUrl: './characters.component.html',
@@ -21,11 +22,13 @@ export class CharactersComponent {
 		? this._router.url.replace('/characters/', '')
 		: '';
 
-	columns = ['name', 'birth', 'location', 'type'];
+	columns = ['name'];
+
+	showTable = false;
 
 	form: FormInterface = this._form.getForm(
 		'storycharacter',
-		storycharacterFormComponents
+		JSON.parse(JSON.stringify(storycharacterFormComponents))
 	);
 
 	config = {
@@ -135,9 +138,10 @@ export class CharactersComponent {
 	rows: Storycharacter[] = [];
 
 	constructor(
+		private _storycharacterService: StorycharacterService,
+		private _types: StorycharactertypeService,
 		public locationService: StorylocationService,
 		public typeService: StorychangetypeService,
-		private _storycharacterService: StorycharacterService,
 		private _translate: TranslateService,
 		private _alert: AlertService,
 		private _form: FormService,
@@ -145,6 +149,35 @@ export class CharactersComponent {
 		private _router: Router
 	) {
 		this.setRows();
+
+		this._types.get().subscribe((types) => {
+			for (const type of types) {
+				this.columns.push(type.name);
+
+				this.form.components.push({
+					name: type.field,
+					key: 'data.' + type.name,
+					fields: [
+						{
+							name: 'Placeholder',
+							value: `fill ${type.name} ...`
+						},
+						{
+							name: 'Label',
+							value: type.name
+						},
+						{
+							name: 'Items',
+							value: type.entities
+						}
+					]
+				});
+			}
+
+			console.log(types, this.form.components);
+
+			this.showTable = true;
+		});
 	}
 
 	setRows(page = this._page): void {
