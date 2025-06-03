@@ -75,6 +75,12 @@ export class StoriesComponent extends CrudComponent<
 					hrefFunc: (doc: Story): string => {
 						return '/skills/' + doc._id;
 					}
+				},
+				{
+					icon: 'inventory_2',
+					hrefFunc: (doc: Story): string => {
+						return '/artifacts/' + doc._id;
+					}
 				}
 			]
 		);
