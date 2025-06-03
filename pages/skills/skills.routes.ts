@@ -4,6 +4,10 @@ import { SkillsComponent } from './skills.component';
 export const skillsRoutes: Routes = [
 	{
 		path: '',
-		component: SkillsComponent,
+		component: SkillsComponent
 	},
+	{
+		path: ':story',
+		component: SkillsComponent
+	}
 ];

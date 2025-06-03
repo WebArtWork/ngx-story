@@ -4,6 +4,10 @@ import { BossesComponent } from './bosses.component';
 export const bossesRoutes: Routes = [
 	{
 		path: '',
-		component: BossesComponent,
+		component: BossesComponent
 	},
+	{
+		path: ':story',
+		component: BossesComponent
+	}
 ];

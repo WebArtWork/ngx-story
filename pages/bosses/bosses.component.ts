@@ -8,30 +8,48 @@ import { storybossFormComponents } from '../../formcomponents/storyboss.formcomp
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { TableModule } from 'src/app/core/modules/table/table.module';
 import { CrudComponent } from 'wacom';
+import { Router } from '@angular/router';
 
 @Component({
 	imports: [CommonModule, TableModule],
 	templateUrl: './bosses.component.html',
-	styleUrls: ['./bosses.component.scss'],
+	styleUrls: ['./bosses.component.scss']
 })
 export class BossesComponent extends CrudComponent<
 	StorybossService,
 	Storyboss,
 	FormInterface
 > {
-	columns = ['name', 'description'];
+	story = this._router.url.includes('bosses/')
+		? this._router.url.replace('/bosses/', '')
+		: '';
 
-	config = {
-		...this.getConfig(),
-	};
+	columns = ['name'];
+
+	config = this.getConfig();
 
 	constructor(
 		_storybossService: StorybossService,
 		_translate: TranslateService,
-		_form: FormService
+		_form: FormService,
+		private _router: Router
 	) {
 		super(storybossFormComponents, _form, _translate, _storybossService);
 
 		this.setDocuments();
+	}
+
+	override allowCreate(): boolean {
+		return !!this.story;
+	}
+
+	override preCreate(doc: Storyboss): void {
+		delete doc.__created;
+
+		doc.story = this.story;
+	}
+
+	override allowUrl(): boolean {
+		return false;
 	}
 }
