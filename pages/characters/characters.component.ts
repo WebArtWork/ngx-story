@@ -152,7 +152,7 @@ export class CharactersComponent {
 
 		this._types.get().subscribe((types) => {
 			for (const type of types) {
-				this.columns.push(type.name);
+				// this.columns.push(type.name);
 
 				this.form.components.push({
 					name: type.field,
@@ -173,8 +173,6 @@ export class CharactersComponent {
 					]
 				});
 			}
-
-			console.log(types, this.form.components);
 
 			this.showTable = true;
 		});
