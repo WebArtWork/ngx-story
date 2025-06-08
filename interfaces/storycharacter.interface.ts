@@ -6,4 +6,5 @@ export interface Storycharacter extends CrudDocument {
 	thumb: string;
 	name: string;
 	description: string;
+	data: Record<string, unknown>;
 }
