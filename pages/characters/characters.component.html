@@ -2,8 +2,7 @@
 	[columns]="columns"
 	title="Characters"
 	[config]="config"
-	*ngIf="showTable"
-	[rows]="rows"
+	[rows]="documents"
 >
 	<ng-template cell="birth" let-element>
 		{{element.birth|date:'dd/MM/YYY'}}

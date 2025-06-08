@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StorychangeService } from '../../services/storychange.service';
-import { Storychange } from '../../interfaces/storychange.interface';
+import { StorychangetypeService } from '../../services/storychangetype.service';
+import { Storychangetype } from '../../interfaces/storychangetype.interface';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { TranslateService } from 'src/app/core/modules/translate/translate.service';
-import { storychangeFormComponents } from '../../formcomponents/storychange.formcomponents';
+import { storychangetypeFormComponents } from '../../formcomponents/storychangetype.formcomponents';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { TableModule } from 'src/app/core/modules/table/table.module';
 import { CrudComponent } from 'wacom';
@@ -12,17 +12,21 @@ import { Router } from '@angular/router';
 
 @Component({
 	imports: [CommonModule, TableModule],
-	templateUrl: './changes.component.html',
-	styleUrls: ['./changes.component.scss']
+	templateUrl: './changetypes.component.html',
+	styleUrls: ['./changetypes.component.scss']
 })
-export class ChangesComponent extends CrudComponent<
-	StorychangeService,
-	Storychange,
+export class ChangetypesComponent extends CrudComponent<
+	StorychangetypeService,
+	Storychangetype,
 	FormInterface
 > {
-	story = this._router.url.includes('/change/')
-		? this._router.url.replace('/change/', '')
+	change = this._router.url.includes('type/')
+		? this._router.url.replace('/change/type/', '')
 		: '';
+
+	override allowCreate(): boolean {
+		return !!this.change;
+	}
 
 	override configType: 'local' | 'server' = 'local';
 
@@ -31,16 +35,16 @@ export class ChangesComponent extends CrudComponent<
 	config = this.getConfig();
 
 	constructor(
-		_storychangeService: StorychangeService,
+		_storychangetypeService: StorychangetypeService,
 		_translate: TranslateService,
 		_form: FormService,
 		private _router: Router
 	) {
 		super(
-			storychangeFormComponents,
+			storychangetypeFormComponents,
 			_form,
 			_translate,
-			_storychangeService
+			_storychangetypeService
 		);
 
 		this.setDocuments();

@@ -24,6 +24,17 @@ export class CharactertypesComponent extends CrudComponent<
 		? this._router.url.replace('/character/types/', '')
 		: '';
 
+	override updatableFields = [
+		'_id',
+		'name',
+		'field',
+		'entities',
+		'order',
+		'data'
+	];
+
+	override configType: 'local' | 'server' = 'local';
+
 	columns = ['name', 'entities'];
 
 	config = this.getConfig();

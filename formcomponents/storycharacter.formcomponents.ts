@@ -1,4 +1,6 @@
-export const storycharacterFormComponents = {
+import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
+
+export const storycharacterFormComponents: FormInterface = {
 	formId: 'storycharacter',
 	title: 'Storycharacter',
 	components: [

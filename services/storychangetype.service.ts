@@ -6,9 +6,17 @@ import { CrudService } from 'wacom';
 	providedIn: 'root',
 })
 export class StorychangetypeService extends CrudService<Storychangetype> {
+	storychangetypes: Storychangetype[] = this.getDocs();
+
+	storychangetypesByAuthor: Record<string, Storychangetype[]> = {};
+
 	constructor() {
 		super({
 			name: 'storychangetype',
 		});
+
+		this.get();
+
+		this.filteredDocuments(this.storychangetypesByAuthor);
 	}
 }

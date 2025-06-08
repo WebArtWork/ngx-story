@@ -20,8 +20,8 @@ export class ArtifactsComponent extends CrudComponent<
 	Storyartifact,
 	FormInterface
 > {
-	story = this._router.url.includes('skills/')
-		? this._router.url.replace('/skills/', '')
+	story = this._router.url.includes('artifacts/')
+		? this._router.url.replace('/artifacts/', '')
 		: '';
 
 	columns = ['name'];
